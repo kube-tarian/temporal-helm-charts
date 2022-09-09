@@ -1,4 +1,4 @@
-## K8ssandra Operator 
+##  Temporal
 ### Prerequisites
 - k8ssandra
 

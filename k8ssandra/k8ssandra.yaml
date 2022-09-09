@@ -1,0 +1,27 @@
+cassandra:
+  version: "3.11.10"
+  cassandraLibDirVolume:
+    storageClass: "civo-volume"
+    size: 5Gi
+  allowMultipleNodesPerWorker: true
+  heap:
+   size: 1G
+   newGenSize: 1G
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 2Gi
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+  datacenters:
+  - name: temporal
+    size: 3
+    racks:
+    - name: default
+kube-prometheus-stack:
+  enabled: false
+  prometheusOperator:
+    enabled: false
+stargate:
+  enabled: true

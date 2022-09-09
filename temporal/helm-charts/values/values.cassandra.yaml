@@ -1,0 +1,50 @@
+server:
+  config:
+    logLevel: "debug,info"
+    numHistoryShards: 512
+    persistence:
+      default:
+        driver: "cassandra"
+        cassandra:
+          hosts: ["k8ssandra-temporal-service"]
+          port: 9042
+          keyspace: temporal
+          user: "k8ssandra-superuser"
+          password: "*********"
+          existingSecret: ""
+          replicationFactor: 3
+          consistency:
+            default:
+              consistency: "local_quorum"
+              serialConsistency: "local_serial"
+
+      visibility:
+        driver: "cassandra"
+
+        cassandra:
+          hosts: ["k8ssandra-temporal-service"]
+          port: 9042
+          keyspace: temporal_visibility
+          user: "k8ssandra-superuser"
+          password: "*********"
+          existingSecret: ""
+          replicationFactor: 3
+          consistency:
+            default:
+              consistency: "local_quorum"
+              serialConsistency: "local_serial"
+
+cassandra:
+  enabled: false
+
+mysql:
+  enabled: false
+
+postgresql:
+  enabled: false
+
+schema:
+  setup:
+    enabled: true
+  update:
+    enabled: true

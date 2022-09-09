@@ -10,7 +10,7 @@ server:
           port: 9042
           keyspace: temporal
           user: "k8ssandra-superuser"
-          password: "*********"
+          password: ""
           existingSecret: ""
           replicationFactor: 3
           consistency:
@@ -26,7 +26,7 @@ server:
           port: 9042
           keyspace: temporal_visibility
           user: "k8ssandra-superuser"
-          password: "*********"
+          password: ""
           existingSecret: ""
           replicationFactor: 3
           consistency:
@@ -43,8 +43,10 @@ mysql:
 postgresql:
   enabled: false
 
+
+## set to true when the chart is set up for the first time, then set to false
 schema:
   setup:
-    enabled: true
+    enabled: false
   update:
-    enabled: true
+    enabled: false

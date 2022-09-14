@@ -3,13 +3,12 @@
 - k8ssandra
 
 #### pre-installation setup
-Get username and passowrd for cassandra installed in temporal namespace and the values in values/values.cassandra.yaml
+Copy the secret from k8ssandra-operator namespace to temporal namespace
 ```sh
-export CASSANDRA_USER=$(kubectl get -n temporal secret k8ssandra-superuser -o jsonpath="{.data.username}" | base64 --decode)
-export CASSANDRA_PASSWORD=$(kubectl get secret -n temporal k8ssandra-superuser -o jsonpath="{.data.password}" | base64 --decode)
+kubectl get secret temporal-superuser --namespace=k8ssandra-operator -o yaml | sed 's/namespace: .*/namespace: temporal/' | kubectl apply -f -
 ```
 ### Intallation
-cd into helm-charts directory and run the following command
+Note: when installing it for the first set the values for schema create and update to true in values/values.cassandra.yaml file, once the installation is complete set them to false for subsequent releases.
 ```sh
 helm install -f values.yaml -f values/values.cassandra.yaml -n temporal temporal .
 ```

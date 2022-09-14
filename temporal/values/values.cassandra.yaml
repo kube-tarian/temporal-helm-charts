@@ -6,11 +6,11 @@ server:
       default:
         driver: "cassandra"
         cassandra:
-          hosts: ["k8ssandra-temporal-service"]
+          hosts: ["temporal-temporal-service.k8ssandra-operator.svc.cluster.local"]
           port: 9042
           keyspace: temporal
-          user: "k8ssandra-superuser"
-          existingSecret: "k8ssandra-superuser"
+          user: "temporal-superuser"
+          existingSecret: "temporal-superuser"
           replicationFactor: 3
           consistency:
             default:
@@ -21,11 +21,11 @@ server:
         driver: "cassandra"
 
         cassandra:
-          hosts: ["k8ssandra-temporal-service"]
+          hosts: ["temporal-temporal-service.k8ssandra-operator.svc.cluster.local"]
           port: 9042
           keyspace: temporal_visibility
-          user: "k8ssandra-superuser"
-          existingSecret: "k8ssandra-superuser"
+          user: "temporal-superuser"
+          existingSecret: "temporal-superuser"
           replicationFactor: 3
           consistency:
             default:
@@ -45,6 +45,6 @@ postgresql:
 ## set to true when the chart is set up for the first time, then set to false
 schema:
   setup:
-    enabled: false
+    enabled: true
   update:
-    enabled: false
+    enabled: true

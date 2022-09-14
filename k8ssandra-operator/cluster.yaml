@@ -1,0 +1,28 @@
+apiVersion: k8ssandra.io/v1alpha1
+kind: K8ssandraCluster
+metadata:
+  name: temporal
+  namespace: k8ssandra-operator
+spec:
+  cassandra:
+    serverVersion: "4.0.1"
+    storageConfig:
+      cassandraDataVolumeClaimSpec:
+        storageClassName: civo-volume
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5Gi
+    config:
+      jvmOptions:
+        heapSize: 512M
+    networking:
+      hostNetwork: true
+    datacenters:
+      - metadata:
+          name: temporal
+        size: 3
+        stargate:
+          size: 1
+          heapSize: 256M

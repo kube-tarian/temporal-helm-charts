@@ -1,6 +1,7 @@
 ## K8ssandra Operator 
 ### Prerequisites
 - Helm 3.x
+- cluster with minimum of 4 nodes.
 ### Intallation
 #### Add Helm repo
 ```bash

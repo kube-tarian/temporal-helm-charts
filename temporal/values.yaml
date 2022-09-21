@@ -383,8 +383,8 @@ prometheus:
     enabled: false
 
 grafana:
-  enabled: false
-  replicas: 1
+  enabled: true
+  replicas: 0
   testFramework:
     enabled: false
   rbac:

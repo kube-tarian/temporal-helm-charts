@@ -1,11 +1,15 @@
 apiVersion: k8ssandra.io/v1alpha1
 kind: K8ssandraCluster
 metadata:
-  name: temporal
+  name: test
   namespace: k8ssandra-operator
 spec:
   cassandra:
     serverVersion: "4.0.1"
+    serverImage: k8ssandra/cass-management-api:4.0.1
+    telemetry:
+      prometheus:
+        enabled: true
     storageConfig:
       cassandraDataVolumeClaimSpec:
         storageClassName: civo-volume
@@ -17,12 +21,21 @@ spec:
     config:
       jvmOptions:
         heapSize: 512M
-    networking:
+    networking: 
       hostNetwork: true
     datacenters:
       - metadata:
           name: temporal
         size: 3
-        stargate:
-          size: 1
-          heapSize: 256M
+    mgmtAPIHeap: 256Mi 
+  stargate:
+    size: 1
+    heapSize: 256M
+    telemetry:
+      prometheus:
+        enabled: true
+  reaper:
+    keyspace: reaper_db
+    telemetry:
+      prometheus:
+        enabled: true

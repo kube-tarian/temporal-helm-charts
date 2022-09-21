@@ -14,7 +14,7 @@ spec:
     targetRevision: HEAD
     path: k8ssandra-cluster
     helm:
-      valuesFiles:
+      valueFiles:
       - values.yaml
   destination:
     server: https://kubernetes.default.svc

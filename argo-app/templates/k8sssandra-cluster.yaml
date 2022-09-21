@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: k8ssandra-operator
+  name: k8ssandra-cluster
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/kube-tarian/temporal-helm-charts.git
     targetRevision: HEAD
-    path: k8ssandra-operator
+    path: k8ssandra-cluster
 
     helm:
       valuesFiles:

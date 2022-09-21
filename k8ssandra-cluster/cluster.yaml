@@ -36,6 +36,3 @@ spec:
         enabled: true
   reaper:
     keyspace: reaper_db
-    telemetry:
-      prometheus:
-        enabled: true

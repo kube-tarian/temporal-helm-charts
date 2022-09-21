@@ -13,6 +13,10 @@ spec:
     repoURL: https://github.com/kube-tarian/temporal-helm-charts.git
     targetRevision: HEAD
     path: temporal
+    helm:
+      valueFiles:
+      - values.yaml
+      - values/values.cassandra.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: temporal

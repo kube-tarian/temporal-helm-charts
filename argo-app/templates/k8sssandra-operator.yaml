@@ -10,13 +10,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/kube-tarian/temporal-helm-charts/tree/main/k8ssandra-operator'
+    repoURL: https://github.com/kube-tarian/temporal-helm-charts/tree/main/k8ssandra-operator.git
     targetRevision: HEAD
     helm:
       valuesFiles:
       - values.yaml
   destination:
-    server: 'https://kubernetes.default.svc'
+    server: https://kubernetes.default.svc
     namespace: k8ssandra-operator
   syncPolicy:
     automated:

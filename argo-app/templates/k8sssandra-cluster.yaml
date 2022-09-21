@@ -4,20 +4,24 @@ metadata:
   name: k8ssandra-operator
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "-1"
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/kube-tarian/temporal-helm-charts/tree/main/k8ssandra-cluster'
+    repoURL: https://github.com/kube-tarian/temporal-helm-charts/tree/main/k8ssandra-cluster.git
     targetRevision: HEAD
+    helm:
+      valuesFiles:
+      - values.yaml
   destination:
-    server: 'https://kubernetes.default.svc'
+    server: https://kubernetes.default.svc
     namespace: k8ssandra-operator
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
+    - createNamespace=true
     - pruneLast=true

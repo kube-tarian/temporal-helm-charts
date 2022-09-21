@@ -1,0 +1,4 @@
+# Global
+k8ssandra-operator:
+  enable: true
+temporal:

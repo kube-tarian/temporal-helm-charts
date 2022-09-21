@@ -206,17 +206,17 @@ server:
     podLabels: {}
     resources:
       limits:
-        cpu: 100m
-        memory: 128Mi
+        cpu: 200m
+        memory: 256Mi
       requests:
-        cpu: 100m
-        memory: 128Mi
+        cpu: 200m
+        memory: 256Mi
     nodeSelector: {}
     tolerations: []
     affinity: {}
     autoscaling:
       enabled: true
-      minReplicas: 4
+      minReplicas: 1
       maxReplicas: 5
       targetCPUUtilizationPercentage: 50
       targetMemoryUtilizationPercentage: 50

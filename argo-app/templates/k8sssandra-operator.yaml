@@ -42,7 +42,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/k8ssandra/k8ssandra.git
-    targetRevision: v0.38.0
+    targetRevision: v1.5.1
     path: charts/k8ssandra-operator/crds
   destination:
     server: https://kubernetes.default.svc

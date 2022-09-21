@@ -14,8 +14,36 @@ spec:
     targetRevision: HEAD
     path: k8ssandra-operator
     helm:
+      skipCrds: true
       valueFiles:
       - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: k8ssandra-operator
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - createNamespace=true
+    - pruneLast=true
+---
+#https://github.com/k8ssandra/k8ssandra.git
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: k8ssandra-operator-crds
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/k8ssandra/k8ssandra.git
+    targetRevision: v0.38.0
+    path: charts/k8ssandra-operator/crds
   destination:
     server: https://kubernetes.default.svc
     namespace: k8ssandra-operator
